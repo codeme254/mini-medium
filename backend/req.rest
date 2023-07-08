@@ -1,0 +1,31 @@
+### Get all users
+GET http://localhost:8081/users
+
+### Create a user
+POST http://localhost:8081/users
+Content-Type: application/json
+
+{
+    "firstName": "Jack",
+    "lastName": "Progy",
+    "username": "jack",
+    "profilePicture": "img.png",
+    "emailAddress": "jack@gmail.com",
+    "password": "987654321"
+}
+
+### Get a single user
+GET http://localhost:8081/users/thanos
+
+### Update user information
+PATCH http://localhost:8081/users/thanos
+Content-Type: application/json
+
+{
+    "firstName": "jackton",
+    "newUserName": "thanos",
+    "newEmailAddress": "thanos@yahoo.com"
+}
+
+### Delete user
+DELETE http://localhost:8081/users/elton_john
