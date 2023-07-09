@@ -1,0 +1,18 @@
+.login-form-container {
+  background-color: var(--color-yellow-hero-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 3rem;
+}
+
+.login-form {
+  margin-top: 3rem;
+  min-width: 40%;
+  box-shadow: -3px 0px 24px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -3px 0px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -3px 0px 24px 0px rgba(0, 0, 0, 0.75);
+  padding: 3rem;
+  border-radius: 10px;
+}

@@ -213,7 +213,7 @@ const SignUpForm = () => {
           create account
         </button>
         <p className="form-guide">
-          Already have an account? <Link>Login</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </form>
     </div>
