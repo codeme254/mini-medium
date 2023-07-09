@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage"
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: "minimediumimages",
   storageBucket: "minimediumimages.appspot.com",
   messagingSenderId: "234056863838",
-  appId: "1:234056863838:web:ca4ef11680dfff240124cf"
+  appId: "1:234056863838:web:ca4ef11680dfff240124cf",
 };
 
 // Initialize Firebase

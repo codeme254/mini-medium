@@ -4,12 +4,12 @@ import { useState } from "react";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
-import DotLoader from 'react-spinners/DotLoader';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SignUpForm = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const { register, handleSubmit } = useForm();
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const uploadImage = () => {
     if (!imageUpload) return Promise.resolve(null);
@@ -27,7 +27,7 @@ const SignUpForm = () => {
 
   const onSubmit = async (data) => {
     try {
-        setIsSubmitting(true)
+      setIsSubmitting(true);
       const uploadedUrl = await uploadImage();
       if (uploadedUrl) {
         data["profilePicture"] = uploadedUrl;
@@ -38,13 +38,23 @@ const SignUpForm = () => {
     } catch (error) {
       console.log("Error occurred while uploading the avatar:", error);
     }
-    setIsSubmitting(false)
+    setIsSubmitting(false);
   };
 
   return (
     <div className="sign-up-form-container">
       <h5 className="form-title">Create a free account</h5>
-      { isSubmitting ? <p>Please wait as we submit your data to the server...</p> : null }
+      {isSubmitting ? (
+        <div className="loading">
+          <ClipLoader
+            loading={isSubmitting}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+          <h3>Submitting your information, please wait...</h3>
+        </div>
+      ) : null}
       <form onSubmit={handleSubmit(onSubmit)} className="sign-up-form">
         <div className="form-group-flex">
           <div className="form-group form-group-width-fix">
