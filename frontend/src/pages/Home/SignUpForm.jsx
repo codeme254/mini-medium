@@ -7,6 +7,8 @@ import { v4 } from "uuid";
 import ClipLoader from "react-spinners/ClipLoader";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { apiDomain } from "../../utils/utils";
+import { useNavigate } from "react-router-dom";
 
 const Error = ({ message }) => {
   return <p>{message}</p>;
@@ -15,6 +17,7 @@ const Error = ({ message }) => {
 const SignUpForm = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const schema = yup.object().shape({
     firstName: yup
@@ -73,7 +76,21 @@ const SignUpForm = () => {
       const uploadedUrl = await uploadImage();
       if (uploadedUrl) {
         data["profilePicture"] = uploadedUrl;
-        console.log(data);
+        const registerUser = await fetch(`${apiDomain}/users`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const responseData = await registerUser.json();
+        console.log(registerUser);
+        console.log(responseData);
+        if (registerUser.ok) {
+          navigate("/login");
+        } else {
+          alert(`Something went wrong: ${responseData.message}`);
+        }
       } else {
         console.log("Avatar URL not available");
       }

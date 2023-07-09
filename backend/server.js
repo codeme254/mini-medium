@@ -3,6 +3,14 @@ const app = express();
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const usersRouter = require("./routes/users");
+const cors = require("cors");
+
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
