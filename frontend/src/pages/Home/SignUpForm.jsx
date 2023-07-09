@@ -1,9 +1,46 @@
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { storage } from "../../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+
 const SignUpForm = () => {
+  const [imageUpload, setImageUpload] = useState(null);
+  const { register, handleSubmit } = useForm();
+
+  const uploadImage = () => {
+    if (!imageUpload) return Promise.resolve(null);
+
+    const imageRef = ref(storage, `avatars/${imageUpload.name + v4()}`);
+    return uploadBytes(imageRef, imageUpload)
+      .then((snapshot) => {
+        return getDownloadURL(snapshot.ref);
+      })
+      .catch((error) => {
+        console.log("Error occurred while uploading the avatar:", error);
+        return null;
+      });
+  };
+
+  const onSubmit = async (data) => {
+    try {
+      const uploadedUrl = await uploadImage();
+      if (uploadedUrl) {
+        data["profilePicture"] = uploadedUrl;
+        console.log(data);
+      } else {
+        console.log("Avatar URL not available");
+      }
+    } catch (error) {
+      console.log("Error occurred while uploading the avatar:", error);
+    }
+  };
+
   return (
     <div className="sign-up-form-container">
       <h5 className="form-title">Create a free account</h5>
-      <form action="" className="sign-up-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="sign-up-form">
         <div className="form-group-flex">
           <div className="form-group form-group-width-fix">
             <label htmlFor="firstName" className="form-group__label">
@@ -14,6 +51,7 @@ const SignUpForm = () => {
               id="firstName"
               className="form-group__text-input"
               placeholder="first name"
+              {...register("firstName")}
             />
           </div>
           <div className="form-group form-group-width-fix">
@@ -25,6 +63,7 @@ const SignUpForm = () => {
               id="lastName"
               className="form-group__text-input"
               placeholder="last name"
+              {...register("lastName")}
             />
           </div>
         </div>
@@ -37,6 +76,7 @@ const SignUpForm = () => {
             id="email address"
             className="form-group__text-input"
             placeholder="email address"
+            {...register("emailAddress")}
           />
         </div>
         <div className="form-group">
@@ -48,6 +88,7 @@ const SignUpForm = () => {
             id="username"
             className="form-group__text-input"
             placeholder="username"
+            {...register("username")}
           />
         </div>
         <div className="form-group">
@@ -59,6 +100,7 @@ const SignUpForm = () => {
             id="password"
             className="form-group__text-input"
             placeholder="password"
+            {...register("password")}
           />
         </div>
         <div className="form-group">
@@ -76,7 +118,12 @@ const SignUpForm = () => {
           <label htmlFor="profilePhoto" className="form-group__label">
             Upload a profile photo
           </label>
-          <input type="file" name="" id="profilePhoto" />
+          <input
+            type="file"
+            name=""
+            id="profilePhoto"
+            onChange={(event) => setImageUpload(event.target.files[0])}
+          />
         </div>
         <button type="submit" className="submit-btn">
           create account

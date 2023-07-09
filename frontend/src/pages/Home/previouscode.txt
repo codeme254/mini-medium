@@ -1,0 +1,25 @@
+const [imageUpload, setImageUpload] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const { register, handleSubmit } = useForm();
+
+  const uploadImage = () => {
+    if (!imageUpload) return;
+    // generate completely random name for the image
+    const imageRef = ref(storage, `avatars/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+            setAvatarUrl(url)
+        })
+    })
+  };
+
+  const onSubmit = (data) => {
+    uploadImage();
+    if (avatarUrl) {
+        data["profilePicture"] = avatarUrl;
+        console.log(data)
+    } else {
+        console.log("avatar url not yet available")
+    }
+    console.log(data);
+  };
