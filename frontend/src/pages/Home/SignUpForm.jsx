@@ -8,6 +8,7 @@ import { v4 } from "uuid";
 const SignUpForm = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const { register, handleSubmit } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const uploadImage = () => {
     if (!imageUpload) return Promise.resolve(null);
@@ -25,6 +26,7 @@ const SignUpForm = () => {
 
   const onSubmit = async (data) => {
     try {
+        setIsSubmitting(true)
       const uploadedUrl = await uploadImage();
       if (uploadedUrl) {
         data["profilePicture"] = uploadedUrl;
@@ -35,11 +37,13 @@ const SignUpForm = () => {
     } catch (error) {
       console.log("Error occurred while uploading the avatar:", error);
     }
+    setIsSubmitting(false)
   };
 
   return (
     <div className="sign-up-form-container">
       <h5 className="form-title">Create a free account</h5>
+      { isSubmitting ? <p>Please wait as we submit your data to the server...</p> : null }
       <form onSubmit={handleSubmit(onSubmit)} className="sign-up-form">
         <div className="form-group-flex">
           <div className="form-group form-group-width-fix">
