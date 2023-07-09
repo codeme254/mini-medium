@@ -4,6 +4,7 @@ import { useState } from "react";
 import { storage } from "../../firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import DotLoader from 'react-spinners/DotLoader';
 
 const SignUpForm = () => {
   const [imageUpload, setImageUpload] = useState(null);
