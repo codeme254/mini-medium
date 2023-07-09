@@ -1,42 +1,91 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --color-yellow-hero-bg: #ffc017;
+  --color-black-default: #191919;
+  --color-green: #1a8917;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
+.form-title {
   text-align: center;
+  font-size: 2rem;
+  text-transform: capitalize;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-group-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.form-group-width-fix {
+  width: 45%;
 }
 
-.card {
-  padding: 2em;
+.form-group__label {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #333;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
 }
 
-.read-the-docs {
-  color: #888;
+.form-group__text-input {
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  font-weight: bold;
+}
+
+.submit-btn {
+  display: block;
+  min-width: 100%;
+  padding: 1.5rem 2rem;
+  background-color: var(--color-green);
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 100px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.form-guide {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: bold;
 }

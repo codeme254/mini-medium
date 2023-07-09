@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+  background-color: var(--color-yellow-hero-bg);
+  border-bottom: 1px solid black;
+}
+
+.header__logo {
+  font-family: serif;
+  font-size: 3rem;
+}
+
+.header__nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.header__nav-list__item {
+  padding: 2rem 3rem;
+}
+
+.header__nav-list__item a,
+.header__nav-list__item a:visited {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: var(--color-black-default);
+}
+
+.header-btn-cta {
+  background-color: var(--color-green);
+  padding: 1rem 3rem !important;
+  border-radius: 100px;
+}
+
+.header-btn-cta a {
+  color: #fff !important;
+}

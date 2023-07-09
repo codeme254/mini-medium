@@ -1,0 +1,46 @@
+.home {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--color-yellow-hero-bg);
+}
+
+.home__textbox {
+  width: 40%;
+  margin-right: auto;
+}
+
+.sign-up-form-container {
+  width: 55%;
+  padding: 2rem;
+  box-shadow: 2px 2px 43px 1px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 2px 43px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 43px 1px rgba(0, 0, 0, 0.75);
+  border-radius: 8px;
+}
+
+.home__textbox--title {
+  font-size: 8rem;
+  margin-bottom: 2rem;
+}
+
+.home__textbox--subtitle {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+.home__textbox--link,
+.home__textbox--link:visited {
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 3rem;
+  font-size: 2rem;
+  color: #fff;
+  background-color: var(--color-black-default);
+  border-radius: 100px;
+  text-transform: capitalize;
+}
