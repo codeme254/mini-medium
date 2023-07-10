@@ -29,3 +29,12 @@ Content-Type: application/json
 
 ### Delete user
 DELETE http://localhost:8081/users/elton_john
+
+### Login a user
+POST http://localhost:8081/users/auth/login
+Content-Type: application/json
+
+{
+    "emailAddress": "jack@gmail.com",
+    "password": "987654321"
+}

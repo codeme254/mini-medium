@@ -7,7 +7,7 @@ import { v4 } from "uuid";
 import ClipLoader from "react-spinners/ClipLoader";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { apiDomain } from "../../utils/utils";
+import { apiDomain, notify } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 
 const Error = ({ message }) => {
@@ -127,7 +127,8 @@ const SignUpForm = () => {
               placeholder="first name"
               {...register("firstName", { required: true })}
             />
-            {errors.firstName && <Error message={errors.firstName?.message} />}
+            {errors.firstName &&
+              notify(errors.firstName?.message, "first-name-error")}
           </div>
           <div className="form-group form-group-width-fix">
             <label htmlFor="lastName" className="form-group__label">
@@ -140,7 +141,8 @@ const SignUpForm = () => {
               placeholder="last name"
               {...register("lastName", { required: true })}
             />
-            {errors.lastName && <Error message={errors.lastName?.message} />}
+            {errors.lastName &&
+              notify(errors.lastName?.message, "last-name-error")}
           </div>
         </div>
         <div className="form-group">
@@ -154,9 +156,8 @@ const SignUpForm = () => {
             placeholder="email address"
             {...register("emailAddress", { required: true })}
           />
-          {errors.emailAddress && (
-            <Error message={errors.emailAddress?.message} />
-          )}
+          {errors.emailAddress &&
+            notify(errors.emailAddress?.message, "email-error")}
         </div>
         <div className="form-group">
           <label htmlFor="username" className="form-group__label">
@@ -169,7 +170,8 @@ const SignUpForm = () => {
             placeholder="username"
             {...register("username", { required: true })}
           />
-          {errors.username && <Error message={errors.username?.message} />}
+          {errors.username &&
+            notify(errors.username?.message, "username-error")}
         </div>
         <div className="form-group">
           <label htmlFor="password" className="form-group__label">
@@ -182,7 +184,8 @@ const SignUpForm = () => {
             placeholder="password"
             {...register("password", { required: true })}
           />
-          {errors.password && <Error message={errors.password?.message} />}
+          {errors.password &&
+            notify(errors.password?.message, "password-error")}
         </div>
         <div className="form-group">
           <label htmlFor="confPass" className="form-group__label">
@@ -195,7 +198,8 @@ const SignUpForm = () => {
             placeholder="confirm password"
             {...register("confPass", { required: true })}
           />
-          {errors.confpass && <Error message={errors.confpass?.message} />}
+          {errors.confPass &&
+            notify(errors.confPass?.message, "confPass-error")}
         </div>
         <div className="form-group">
           <label htmlFor="profilePhoto" className="form-group__label">

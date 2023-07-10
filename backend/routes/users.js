@@ -7,6 +7,7 @@ const {
   createUser,
   updateUser,
   deleteUser,
+  loginUser,
 } = require("../controllers/users.controllers");
 
 // get all users
@@ -23,4 +24,7 @@ router.patch("/:username", updateUser);
 
 // delete user
 router.delete("/:username", deleteUser);
+
+// login a user
+router.post("/auth/login", loginUser);
 module.exports = router;

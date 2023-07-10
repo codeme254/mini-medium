@@ -1,10 +1,36 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
+import { useForm } from "react-hook-form";
+import { apiDomain } from "../../../src/utils/utils";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async (data) => {
+    const response = await fetch(`${apiDomain}/users/auth/login`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const responseData = await response.json();
+    if (response.ok) {
+      toast.success("You have successfully logged in");
+      navigate("/explore");
+    } else {
+      alert(responseData.message);
+    }
+  };
+
   return (
     <div className="login-form-container">
       <h2>Login to your account</h2>
-      <form action="" className="login-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="login-form">
         <div className="form-group">
           <label htmlFor="email address" className="form-group__label">
             email address
@@ -14,6 +40,7 @@ const Login = () => {
             id="email address"
             className="form-group__text-input"
             placeholder="email address"
+            {...register("emailAddress", { required: true })}
           />
         </div>
 
@@ -26,6 +53,7 @@ const Login = () => {
             id="password"
             className="form-group__text-input"
             placeholder="password"
+            {...register("password", { required: true })}
           />
         </div>
 

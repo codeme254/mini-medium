@@ -1,4 +1,10 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const dotenv = require("dotenv").config();
+
+const jwtSalt = process.env.JWT_SALT;
+
 const {
   usernameExists,
   emailAddressExists,
@@ -105,6 +111,38 @@ module.exports = {
       res
         .status(404)
         .json({ message: `No such user with username ${username}` });
+    }
+  },
+
+  loginUser: async (req, res) => {
+    const { emailAddress, password } = req.body;
+
+    if (await emailAddressExists(emailAddress)) {
+      try {
+        const user = await User.findOne({ emailAddress });
+        const savedPassword = user.password;
+        const dataResponse = {
+          emailAddress,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          profilePicture: user.profilePicture,
+          username: user.username,
+        };
+        if (bcrypt.compareSync(password, savedPassword)) {
+          jwt.sign(dataResponse, jwtSalt, {}, (err, token) => {
+            if (err) throw err;
+            res.cookie("token", token).json(dataResponse);
+          });
+        } else {
+          res.status(400).json({ message: "Wrong password" });
+        }
+      } catch (e) {
+        res.status(400).json({ message: e.message });
+      }
+    } else {
+      res.status(404).json({
+        message: `There is no user with email address ${emailAddress}`,
+      });
     }
   },
 };
