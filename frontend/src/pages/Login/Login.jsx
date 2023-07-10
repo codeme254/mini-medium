@@ -5,11 +5,17 @@ import { apiDomain } from "../../../src/utils/utils";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+
   const onSubmit = async (data) => {
+    setIsLoading(true);
     const response = await fetch(`${apiDomain}/users/auth/login`, {
       method: "POST",
       body: JSON.stringify(data),
@@ -23,14 +29,20 @@ const Login = () => {
       toast.success("You have successfully logged in");
       navigate("/explore");
     } else {
-      alert(responseData.message);
+      toast.error(responseData.message);
     }
+    setIsLoading(false);
   };
 
   return (
     <div className="login-form-container">
       <h2>Login to your account</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+        {isLoading ? (
+          <div className="load">
+            <BeatLoader />
+          </div>
+        ) : null}
         <div className="form-group">
           <label htmlFor="email address" className="form-group__label">
             email address
