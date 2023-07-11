@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { UserContext } from "../../helpers/Context";
 import HomeNav from "../../components/HomeNav/HomeNav";
+import BlogPreviews from "../../components/BlogPreviews/BlogPreviews";
+import "./Explore.css";
 
 const Explore = () => {
   const { miniMediumUserData, setMiniMediumUserData } = useContext(UserContext);
@@ -11,7 +13,9 @@ const Explore = () => {
   return (
     <div>
       <HomeNav />
-      <h3>Explore endless reads</h3>
+      <div className="explore">
+        <BlogPreviews />
+      </div>
     </div>
   );
 };

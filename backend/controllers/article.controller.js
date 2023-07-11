@@ -1,5 +1,6 @@
 const Article = require("../models/Article");
 const { emailAddressExists } = require("../utils/utils");
+const User = require("../models/User");
 
 module.exports = {
   getAllArticles: async (req, res) => {
@@ -8,7 +9,17 @@ module.exports = {
       if (articles.length === 0) {
         return res.status(204).json(articles);
       } else {
-        return res.status(200).json(articles);
+        const articlesFilled = [];
+        for (let i = 0; i < articles.length; i++) {
+          const authorEmailAddress = articles[i].author;
+          const author = await User.find({
+            emailAddress: authorEmailAddress,
+          }).select(["-password", "-createdAt"]);
+          const articleObject = articles[i].toObject();
+          articleObject.articleAuthor = author[0];
+          articlesFilled.push(articleObject);
+        }
+        res.json(articlesFilled);
       }
     } catch (e) {
       return res.status(500).json({ message: e.message });
