@@ -59,14 +59,14 @@ Content-Type: application/json
 }
 
 ### get a specific article
-GET http://localhost:8081/articles/64acc1e8c4e6e2b32ca70348
+GET http://localhost:8081/articles/64accd84ce6fee4a8e5cda25
 
 ### update an article
 PATCH http://localhost:8081/articles/64acc7e5f914ed2f08c62c77
 Content-Type: application/json
 
 {
-    "title": "how to write a linked list in Rust"
+    "title": "how to write a linked list in Rust, Ruby and C and compare performance"
 }
 
 ### delete an article
