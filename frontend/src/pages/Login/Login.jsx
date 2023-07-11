@@ -5,14 +5,20 @@ import { apiDomain } from "../../../src/utils/utils";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
-
+import { useState, useContext, useEffect } from "react";
+import { UserContext } from "../../helpers/Context";
 import BeatLoader from "react-spinners/BeatLoader";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { userData, setUserData } = useContext(UserContext);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+
+  // useEffect(() => {
+  //   console.log("This is the user data");
+  //   console.log(userData);
+  // }, [userData]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -25,9 +31,22 @@ const Login = () => {
       },
     });
     const responseData = await response.json();
+
     if (response.ok) {
-      toast.success("You have successfully logged in");
-      navigate("/explore");
+      const profile = await fetch(`${apiDomain}/users/profile`, {
+        method: "POST",
+        body: JSON.stringify(data),
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const profileData = await profile.json();
+      if (profileData) {
+        setUserData(profileData);
+        toast.success("You have successfully logged in");
+        navigate("/explore");
+      }
     } else {
       toast.error(responseData.message);
     }
