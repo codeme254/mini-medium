@@ -17,6 +17,14 @@ Content-Type: application/json
 ### Get a single user
 GET http://localhost:8081/users/thanos
 
+### Get a user profile using their email address
+POST http://localhost:8081/users/profile
+Content-Type: application/json
+
+{
+    "emailAddress": "do@gmail.com"
+}
+
 ### Update user information
 PATCH http://localhost:8081/users/thanos
 Content-Type: application/json

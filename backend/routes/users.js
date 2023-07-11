@@ -8,10 +8,14 @@ const {
   updateUser,
   deleteUser,
   loginUser,
+  getProfile,
 } = require("../controllers/users.controllers");
 
 // get all users
 router.get("/", getAllUsers);
+
+// Get a user profile using the email address
+router.post("/profile", getProfile);
 
 // Get a user
 router.get("/:username", getUser);
