@@ -4,6 +4,7 @@ import { MdFavorite } from "react-icons/md";
 import "./BlogPreview.css";
 
 const BlogPreview = ({
+  blogId,
   title,
   description,
   bloggerFirstName,
@@ -14,7 +15,7 @@ const BlogPreview = ({
   claps,
 }) => {
   return (
-    <Link className="blog-wrapper">
+    <Link className="blog-wrapper" to={`/read/${blogId}`}>
       <div className="blog-preview">
         <div className="blog-preview__left">
           <div className="blog-preview__left-user">
@@ -24,7 +25,9 @@ const BlogPreview = ({
             <p className="blog-preview__left--username">
               By: {bloggerFirstName} {bloggerLastName}
             </p>
-            <p className="blog-preview__left--date">Published On {datePosted}</p>
+            <p className="blog-preview__left--date">
+              Published On {datePosted}
+            </p>
           </div>
           <h2 className="blog-preview__title">{title}</h2>
           <p className="blog-preview__description">{description}</p>

@@ -26,6 +26,7 @@ const BlogPreviews = () => {
         (previews.length > 0 ? (
           previews.map((preview, i) => (
             <BlogPreview
+              blogId={preview._id}
               bloggerFirstName={preview.articleAuthor.firstName}
               bloggerLastName={preview.articleAuthor.lastName}
               title={preview.title}

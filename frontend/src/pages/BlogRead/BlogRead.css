@@ -1,0 +1,28 @@
+.blog-body {
+  width: 80rem;
+  margin: 2rem auto;
+}
+
+.blog-body img {
+  width: 80%;
+  display: block;
+  margin: 3rem auto;
+}
+
+.blog-body h3 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.blog-read-description {
+  text-align: center;
+  margin: 2rem 0;
+  font-weight: bold;
+}
+
+.blog-text {
+  text-align: justify;
+  font-size: 1.8rem;
+  text-align: justify;
+  line-height: 1.9;
+}

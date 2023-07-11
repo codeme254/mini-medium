@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import Write from "./pages/Write/Write";
 import { UserContext } from "./helpers/Context";
 import { useState, useEffect } from "react";
+import BlogRead from "./pages/BlogRead/BlogRead";
 
 function App() {
   const [miniMediumUserData, setMiniMediumUserData] = useState(() => {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/explore" element={<Explore />} />
             <Route path="/write" element={<Write />} />
             <Route path="/header" element={<HomeNav />} />
+            <Route path="/read/:blogId" element={<BlogRead />} />
           </Routes>
           <ToastContainer />
         </BrowserRouter>
