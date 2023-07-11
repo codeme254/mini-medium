@@ -11,14 +11,9 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { userData, setUserData } = useContext(UserContext);
+  const { miniMediumUserData, setMiniMediumUserData } = useContext(UserContext);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-
-  // useEffect(() => {
-  //   console.log("This is the user data");
-  //   console.log(userData);
-  // }, [userData]);
 
   const onSubmit = async (data) => {
     setIsLoading(true);
@@ -43,7 +38,7 @@ const Login = () => {
       });
       const profileData = await profile.json();
       if (profileData) {
-        setUserData(profileData);
+        setMiniMediumUserData(profileData);
         toast.success("You have successfully logged in");
         navigate("/explore");
       }

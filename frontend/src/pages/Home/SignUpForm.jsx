@@ -10,10 +10,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { apiDomain, notify } from "../../utils/utils";
 import { useNavigate } from "react-router-dom";
 
-const Error = ({ message }) => {
-  return <p>{message}</p>;
-};
-
 const SignUpForm = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
