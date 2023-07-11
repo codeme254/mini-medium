@@ -67,7 +67,7 @@ Content-Type: application/json
 }
 
 ### get a specific article
-GET http://localhost:8081/articles/64accd84ce6fee4a8e5cda25
+GET http://localhost:8081/articles/64ad239ca166b800b42a8736
 
 ### update an article
 PATCH http://localhost:8081/articles/64acc7e5f914ed2f08c62c77
@@ -79,3 +79,22 @@ Content-Type: application/json
 
 ### delete an article
 DELETE http://localhost:8081/articles/64acc7e5f914ed2f08c62c77
+
+############ favorites routes
+
+### Create a favorite
+POST http://localhost:8081/favorites/emily
+Content-Type: application/json
+
+{
+    "article_id": "64ad239ca166b800b42a8736"
+}
+
+### Get all favorites for a user
+GET http://localhost:8081/favorites/emily
+
+### Get a specific favorite for owned by a user
+GET http://localhost:8081/favorites/emily/64ad239ca166b800b42a8736
+
+### Delete a favorite
+DELETE http://localhost:8081/favorites/emily/64ad239ca166b800b42a8736

@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const Article = require("../models/Article");
 const usernameExists = async (username) => {
   const user = await User.findOne({ username: username });
   if (user) return true;
@@ -24,9 +25,16 @@ const hashPassword = (real_password) => {
   return hashedPassword;
 };
 
+const articleExists = async (article_id) => {
+  const article = await Article.findById({ article_id });
+  if (article) return true;
+  return false;
+};
+
 module.exports = {
   usernameExists,
   emailAddressExists,
   userExists,
   hashPassword,
+  articleExists,
 };

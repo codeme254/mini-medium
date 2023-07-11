@@ -3,8 +3,9 @@ const app = express();
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const usersRouter = require("./routes/users");
-const cors = require("cors");
 const articlesRouter = require("./routes/article");
+const favoritesRouter = require("./routes/favorites");
+const cors = require("cors");
 
 app.use(
   cors({
@@ -30,6 +31,7 @@ app.use(express.json());
 
 app.use("/users", usersRouter);
 app.use("/articles", articlesRouter);
+app.use("/favorites", favoritesRouter);
 
 app.listen(8081, () => {
   console.log(`Server is running or port 8081`);
