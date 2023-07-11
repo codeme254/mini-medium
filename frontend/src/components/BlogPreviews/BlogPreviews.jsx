@@ -32,7 +32,7 @@ const BlogPreviews = () => {
               description={preview.description}
               coverPhoto={preview.article_image}
               bloggerPhoto={preview.articleAuthor.profilePicture}
-              datePosted={new Date(preview.dateCreated).toUTCString()}
+              datePosted={new Date(preview.dateCreated).toLocaleString()}
               claps={preview.claps}
             />
           ))

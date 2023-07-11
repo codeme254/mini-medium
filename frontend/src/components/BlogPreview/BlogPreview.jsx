@@ -24,7 +24,7 @@ const BlogPreview = ({
             <p className="blog-preview__left--username">
               By: {bloggerFirstName} {bloggerLastName}
             </p>
-            <p className="blog-preview__left--date">On {datePosted}</p>
+            <p className="blog-preview__left--date">Published On {datePosted}</p>
           </div>
           <h2 className="blog-preview__title">{title}</h2>
           <p className="blog-preview__description">{description}</p>
