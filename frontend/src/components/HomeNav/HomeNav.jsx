@@ -25,6 +25,11 @@ const HomeNav = () => {
               </Link>
             </li>
             <li className="header__nav-item">
+              <Link className="header__nav-item--link" to="/saves">
+                saves
+              </Link>
+            </li>
+            <li className="header__nav-item">
               <Link className="header__nav-item--link">my account</Link>
             </li>
           </div>
