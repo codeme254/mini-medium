@@ -28,7 +28,7 @@ const UserBlogs = () => {
     <div className="user-blogs">
       {Array.isArray(userBlogs) &&
         (userBlogs.length <= 0 ? (
-          <h2>
+          <h2 className="use-blogs__title">
             You have not written any blogs, start writing to share your idea
             today
           </h2>

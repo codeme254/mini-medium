@@ -44,7 +44,9 @@ const UserBlog = ({
           <p className="save-item__texts--date">
             Last updated on: {lastUpdated}
           </p>
-          <button onClick={handleNavigate}>Edit blog</button>
+          <button onClick={handleNavigate} className="edit-btn">
+            Edit blog
+          </button>
           <button className="remove-button" onClick={handleDelete}>
             Delete blog
           </button>

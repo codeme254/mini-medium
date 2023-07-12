@@ -38,13 +38,12 @@
   cursor: pointer;
 }
 
-.edit-btn,
-.edit-btn:visited {
-  text-decoration: none;
-  margin-right: 3rem;
-  padding: 1rem;
+.edit-btn {
+  border: none;
+  outline: none;
+  margin-right: 2rem;
   background-color: var(--color-yellow-hero-bg);
-  font-weight: bold;
-  color: #333;
+  padding: 1rem;
   border-radius: 100px;
+  color: #fff;
 }

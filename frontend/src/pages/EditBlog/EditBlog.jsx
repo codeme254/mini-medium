@@ -4,6 +4,7 @@ import HomeNav from "../../components/HomeNav/HomeNav";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { apiDomain } from "../../utils/utils";
+import { toast } from "react-toastify";
 
 const modules = {
   toolbar: [
@@ -35,6 +36,9 @@ const formats = [
 ];
 const EditBlog = () => {
   const [blogData, setBlogData] = useState(null);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [body, setBody] = useState("");
   const { blogId } = useParams();
   useEffect(() => {
     if (!blogId) return;
@@ -48,9 +52,35 @@ const EditBlog = () => {
       const blogData_ = await blog.json();
       if (!blogData_) return;
       setBlogData(blogData_);
+      setTitle(blogData_.title);
+      setDescription(blogData_.description);
+      setBody(blogData_.text);
     };
     fetchBlogData();
-  }, [blogData]);
+  }, [blogId]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (title && body && description) {
+      const newBody = { title, text: body, description };
+      const response = await fetch(`${apiDomain}/articles/${blogId}`, {
+        method: "PATCH",
+        body: JSON.stringify(newBody),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const responseData = await response.json();
+      if (response.ok) {
+        toast.success("Updating the post");
+      } else {
+        toast.error(responseData.message);
+      }
+    } else {
+      toast.error("One of the fields is missing");
+    }
+  };
+
   return (
     <div className="edit-blog">
       <HomeNav />
@@ -66,6 +96,7 @@ const EditBlog = () => {
               placeholder="title: eg how to implement a linked list in Ruby"
               className="form-write-text-input"
               defaultValue={blogData.title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
           <div className="write-form-group">
@@ -77,6 +108,7 @@ const EditBlog = () => {
               placeholder="title: eg in this blog, we understand how we can efficiently implement a linked list in ruby"
               className="form-write-text-input"
               defaultValue={blogData.description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
@@ -90,15 +122,16 @@ const EditBlog = () => {
               formats={formats}
               className="editor"
               name="body"
+              value={body}
+              onChange={(content) => setBody(content)}
               defaultValue={blogData.text}
-              //   value={body}
             ></ReactQuill>
           </div>
 
           <button
             type="submit"
             className="write-btn form-publish-btn"
-            // onClick={handleSubmit}
+            onClick={handleSubmit}
           >
             Publish
           </button>
