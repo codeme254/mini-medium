@@ -30,7 +30,9 @@ const HomeNav = () => {
               </Link>
             </li>
             <li className="header__nav-item">
-              <Link className="header__nav-item--link">my account</Link>
+              <Link className="header__nav-item--link" to="/my-account">
+                my account
+              </Link>
             </li>
           </div>
           <li className="header__nav-item__profile">

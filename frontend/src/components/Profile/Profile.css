@@ -1,0 +1,34 @@
+.profile__top {
+  display: flex;
+  width: max-content;
+  margin: 3rem auto;
+}
+
+.profile__image {
+  --size: 8rem;
+  width: var(--size);
+  height: var(--size);
+  margin-right: 3rem;
+}
+
+.profile__image--img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile__fullName {
+  font-size: 3rem;
+}
+
+.profile__username {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profile__email,
+.profile_join-date {
+  font-weight: bold;
+}
