@@ -30,7 +30,10 @@ const Saves = () => {
       <div className="saves__container">
         {Array.isArray(userSaves) &&
           (userSaves.length <= 0 ? (
-            <h1>You don't have any saves</h1>
+            <h1 className="saves-info">
+              You don't have any saves, visit the "Explore Reads" page to save
+              some.
+            </h1>
           ) : (
             <div>
               {userSaves.map((item) => (
@@ -39,7 +42,7 @@ const Saves = () => {
                   item_id={item._id}
                   title={item.title}
                   description={item.description}
-                  article_image={exampleImage}
+                  article_image={item.article_image}
                   dateCreated={new Date(item.dateCreated).toLocaleString()}
                   lastUpdated={new Date(item.lastUpdated).toLocaleString()}
                 />
