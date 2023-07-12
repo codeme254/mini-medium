@@ -6,11 +6,14 @@ const {
   getSpecificArticle,
   updateArticle,
   deleteArticle,
+  getAllArticlesForSpecificUser,
 } = require("../controllers/article.controller");
 
 router.get("/", getAllArticles);
 
 router.post("/", createArticle);
+
+router.post("/:username", getAllArticlesForSpecificUser);
 
 // TODO: populate the comments before sending the article
 router.get("/:id", getSpecificArticle);

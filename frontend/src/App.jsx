@@ -7,6 +7,7 @@ import Write from "./pages/Write/Write";
 import BlogRead from "./pages/BlogRead/BlogRead";
 import Saves from "./pages/Saves/Saves";
 import Account from "./pages/Account/Account";
+import EditBlog from "./pages/EditBlog/EditBlog";
 import { ToastContainer } from "react-toastify";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -41,6 +42,7 @@ function App() {
             <Route path="/write" element={<Write />} />
             <Route path="/header" element={<HomeNav />} />
             <Route path="/read/:blogId" element={<BlogRead />} />
+            <Route path="/edit/:blogId" element={<EditBlog />} />
             <Route path="/saves" element={<Saves />} />
             <Route path="/my-account" element={<Account />} />
           </Routes>

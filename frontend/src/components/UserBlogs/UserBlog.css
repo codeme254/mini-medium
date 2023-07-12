@@ -1,0 +1,50 @@
+.save-wrapper,
+.save-wrapper:visited {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 60%;
+  margin: 3rem auto;
+}
+
+.save-item {
+  display: flex;
+  align-items: center;
+  box-shadow: -3px 9px 30px -3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -3px 9px 30px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -3px 9px 30px -3px rgba(0, 0, 0, 0.75);
+  padding: 3rem;
+  border-radius: 8px;
+}
+
+.save-item__image {
+  width: 30rem;
+  max-height: 20rem;
+  min-height: 20rem;
+  margin-left: 3rem;
+  justify-self: flex-end;
+  flex-grow: 1;
+}
+
+.remove-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  background-color: red;
+  border-radius: 100px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.edit-btn,
+.edit-btn:visited {
+  text-decoration: none;
+  margin-right: 3rem;
+  padding: 1rem;
+  background-color: var(--color-yellow-hero-bg);
+  font-weight: bold;
+  color: #333;
+  border-radius: 100px;
+}

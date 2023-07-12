@@ -61,6 +61,16 @@ module.exports = {
     }
   },
 
+  getAllArticlesForSpecificUser: async (req, res) => {
+    try {
+      const { emailAddress } = req.body;
+      const articles = await Article.find({ author: emailAddress });
+      res.status(200).json(articles);
+    } catch (e) {
+      res.status(500).json({ message: e.message });
+    }
+  },
+
   updateArticle: async (req, res) => {
     const article = await Article.findOne({ _id: req.params.id });
     if (!article) return res.status(404).json({ message: "Article not found" });
